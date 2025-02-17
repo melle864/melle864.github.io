@@ -1,635 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Our Love Journey ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <style>
-    /* Global Reset & Base Styles */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      /* Sea-inspired gradient */
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      overflow-x: hidden;
-      padding-top: 60px;
-      position: relative;
-    }
-    .main-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-    /* Navigation Bar (Centered) */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.7);
-      padding: 10px 0;
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-    }
-    nav a {
-      color: gold;
-      text-decoration: none;
-      margin: 0 20px;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-    /* Background Dynamic Elements */
-    .bg-quotes, .bg-bubbles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%; 
-      height: 50vh; /* top half of viewport */
-      pointer-events: none;
-      z-index: -2;
-      overflow: hidden;
-      font-family: 'Arial', sans-serif;
-    }
-    .bg-quotes span {
-      position: absolute;
-      font-size: 3rem;
-      text-shadow: 2px 2px 8px black;
-      opacity: 0.5;
-      animation: floatQuote 25s linear infinite;
-    }
-    @keyframes floatQuote {
-      0% { transform: translateY(50vh) rotate(0deg); opacity: 0.5; }
-      50% { opacity: 0.7; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0.5; }
-    }
-    .bg-bubbles .bubble {
-      position: absolute;
-      background: rgba(255,255,255,0.4);
-      border-radius: 50%;
-      animation: bubbleFloat 15s linear infinite;
-    }
-    @keyframes bubbleFloat {
-      0% { transform: translateY(50vh) scale(0.5); opacity: 0.4; }
-      50% { opacity: 0.6; }
-      100% { transform: translateY(-20vh) scale(1); opacity: 0.4; }
-    }
-    /* Floating Hearts */
-    .heart {
-      position: absolute;
-      font-size: 30px;
-      opacity: 0.8;
-      animation: floatUp 5s infinite ease-in-out;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      50% { opacity: 0.8; }
-      100% { transform: translateY(-50vh); opacity: 0; }
-    }
-    /* Forever Us (Love Letter) Section */
-    #love-letter {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 90%;
-    }
-    #love-letter h1 {
-      font-size: 32px;
-      color: white;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    #love-letter p {
-      font-size: 20px;
-      color: white;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    .timer {
-      font-size: 24px;
-      color: yellow;
-      margin-top: 10px;
-    }
-    .signature {
-      font-size: 18px;
-      color: white;
-      margin-top: 20px;
-      font-style: italic;
-    }
-    /* Timeline Section */
-    #timeline {
-      background: rgba(0,0,0,0.6);
-      padding: 15px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 90%;
-      font-size: 18px;
-    }
-    #timeline h2 { margin-bottom: 10px; }
-    #timeline ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-    #timeline li {
-      background: gold;
-      color: black;
-      padding: 8px 12px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    #timeline li:hover { background: white; }
-    #eventDescription {
-      margin-top: 15px;
-      background: rgba(0,0,0,0.7);
-      padding: 10px;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    /* Love Quotes & Poems Section */
-    .quote-container {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      font-size: 20px;
-      max-width: 90%;
-    }
-    .quote-container h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 4px black;
-    }
-    .nav-buttons {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-    .btn {
-      background: gold;
-      color: black;
-      padding: 10px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .btn:hover { background: white; }
-    /* Labyrinth (Maze) Section */
-    .maze-section {
-      background: rgba(255,255,255,0.98);
-      color: #333;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 20px auto 140px;
-      max-width: 400px;
-    }
-    .maze-section h1 {
-      color: #333;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-    .maze-container {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 2px;
-    }
-    .maze-cell {
-      width: 100%;
-      padding-top: 100%;
-      position: relative;
-      border: 2px solid #333;
-      background: #fff;
-    }
-    .maze-cell.open-top { border-top: none; }
-    .maze-cell.open-right { border-right: none; }
-    .maze-cell.open-bottom { border-bottom: none; }
-    .maze-cell.open-left { border-left: none; }
-    .maze-cell.player::after,
-    .maze-cell.goal::after {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.6rem;
-    }
-    .maze-cell.player::after { content: "☺"; color: #ff6f61; }
-    .maze-cell.goal::after { content: "❤"; color: red; }
-    /* On-screen Maze Controls */
-    .controls {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-      width: 90%;
-      max-width: 400px;
-      z-index: 5;
-    }
-    .controls button {
-      flex: 1;
-      padding: 15px 0;
-      background: #ff6f61;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-    @media (max-width: 400px) {
-      .quote-container { font-size: 18px; }
-      .btn { font-size: 16px; padding: 8px 16px; }
-      .controls button { font-size: 1rem; padding: 12px 0; }
-    }
-    /* Secret Reveal Modal */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 20;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .modal.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal-content {
-      background: white;
-      color: #333;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      max-width: 90%;
-    }
-    .modal-content h2 {
-      margin-bottom: 15px;
-      font-size: 24px;
-    }
-    .modal-content p {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-    .modal-content button {
-      padding: 10px 20px;
-      background: gold;
-      border: none;
-      border-radius: 10px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .modal-content button:hover {
-      background: #ff6f61;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine? ❤️</title>
+    <style>
+        body {
+            background-color: red;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0.7;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-20px); opacity: 0.7; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .moon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+        }
+        h1 {
+            font-size: 28px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: #8B0000;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <a href="love.html">Forever Us</a>
-    <a href="#quotes">Love Words</a>
-  </nav>
-  
-  <!-- Background Dynamic Elements -->
-  <div class="bg-quotes" id="bgQuotes"></div>
-  <div class="bg-bubbles" id="bgBubbles"></div>
-  
-  <!-- Main Container -->
-  <div class="main-container">
-    <!-- Forever Us (Love Letter) Section -->
-    <section id="love-letter">
-      <h1>We Are Forever ❤️</h1>
-      <p>From the moment we met, my heart knew it was you. Every second, every minute, every day, my love for you grows stronger. One Day 💍</p>
-      <div class="timer" id="timer"></div>
-      <p class="signature">- Your Love, Ahmed</p>
-    </section>
+    <div class="moon">🌙</div>
     
-    <!-- Timeline Section -->
-    <section id="timeline">
-      <h2>Our Journey</h2>
-      <ul>
-        <li onclick="showEvent('firstConversation')">12/12/2023</li>
-        <li onclick="showEvent('birthday')">18/10</li>
-        <li onclick="showEvent('firstAloneMeeting')">25/10/2024</li>
-        <li onclick="showEvent('b7bak')">29/06/2024</li>
-        <li onclick="showEvent('3egl')">17/06/2024</li>
-        <li onclick="showEvent('phoneCall')">03/08/2024</li>
-      </ul>
-      <div id="eventDescription">Click on a date to see the memory.</div>
-    </section>
-    
-    <!-- Love Quotes & Poems Section -->
-    <section class="quote-container" id="quotes">
-      <h1>Love in Words ❤️</h1>
-      <div id="quoteDisplay">"You are my today and all of my tomorrows. ❤️"</div>
-      <div class="nav-buttons">
-        <button class="btn" onclick="prevQuote()">⬅ Previous</button>
-        <button class="btn" onclick="nextQuote()">Next ➡</button>
-      </div>
-      <br>
-      <button class="btn" onclick="window.location.href='love.html'">Back to Love Page ❤️</button>
-    </section>
-    
-    <!-- Labyrinth (Maze) Section -->
-    <section class="maze-section">
-      <h1>Labyrinth of Love</h1>
-      <div id="maze" class="maze-container"></div>
-    </section>
-  </div>
-  
-  <!-- On-screen Maze Controls -->
-  <div class="controls">
-    <button onclick="move('up')">&#8593;</button>
-    <button onclick="move('left')">&#8592;</button>
-    <button onclick="move('down')">&#8595;</button>
-    <button onclick="move('right')">&#8594;</button>
-  </div>
-  
-  <!-- Secret Reveal Modal -->
-  <div class="modal" id="secretModal">
-    <div class="modal-content">
-      <h2>My Heart, Your Future</h2>
-      <p>I dream of a day when I can call you my wife. Until then, know that you are my one and only.</p>
-      <button onclick="closeModal()">Close</button>
+    <h1 id="question">Will you be Mine? ❤️</h1>
+    <div class="buttons">
+        <button class="btn yes" id="yesButton" onclick="location.href='love.html'">Yes</button>
+        <button class="btn no" id="noButton" onclick="makeYesBigger()">No</button>
     </div>
-  </div>
-  
-  <script>
-    /* ------------------------------
-         Background Dynamic Quotes
-    ------------------------------ */
-    const bgQuotes = [
-      '"Eternity in a glance 😍"',
-      '"In your eyes, I see forever ✨"',
-      '"Hearts beat as one 💖"',
-      '"Whispers of passion 💋"',
-      '"Dreams woven in love 🌹"',
-      '"Souls entwined in magic ✨"'
-    ];
-    function createBgQuote() {
-      const span = document.createElement("span");
-      span.innerText = bgQuotes[Math.floor(Math.random() * bgQuotes.length)];
-      span.style.left = Math.random() * 80 + 10 + "vw";
-      span.style.top = Math.random() * 40 + "vh";  // keep quotes in top 40vh
-      span.style.animationDelay = Math.random() * 5 + "s";
-      span.style.animationDuration = (20 + Math.random() * 10) + "s";
-      document.getElementById("bgQuotes").appendChild(span);
-      setTimeout(() => span.remove(), 30000);
-    }
-    setInterval(createBgQuote, 3000);
-    
-    /* ------------------------------
-         Background Floating Bubbles
-    ------------------------------ */
-    function createBubble() {
-      const bubble = document.createElement("div");
-      bubble.classList.add("bubble");
-      const size = Math.random() * 30 + 20;
-      bubble.style.width = size + "px";
-      bubble.style.height = size + "px";
-      bubble.style.left = Math.random() * 90 + 5 + "vw";
-      bubble.style.top = "0vh";  // bubbles start at top
-      bubble.style.opacity = 0.5;
-      document.getElementById("bgBubbles").appendChild(bubble);
-      setTimeout(() => bubble.remove(), 15000);
-    }
-    setInterval(createBubble, 2000);
-    
-    /* ------------------------------
-         Forever Us Timer & Floating Hearts
-    ------------------------------ */
-    function updateTimer() {
-      const startDate = new Date("2023-12-12T00:00:00");
-      const now = new Date();
-      const diff = now - startDate;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      document.getElementById("timer").innerText =
-        `We have been together for ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds ❤️`;
-    }
-    setInterval(updateTimer, 1000);
-    updateTimer();
-    
-    function createFloatingHeart() {
-      const heart = document.createElement("div");
-      heart.innerHTML = "❤️";
-      heart.classList.add("heart");
-      // Place hearts randomly in top half of viewport
-      heart.style.left = (Math.random() * 90 + 5) + "vw";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(createFloatingHeart, 300);
-    
-    /* ------------------------------
-         Timeline Events
-    ------------------------------ */
-    function showEvent(eventId) {
-      const description = document.getElementById("eventDescription");
-      if (eventId === "firstConversation") {
-        description.innerText = "Our first conversation on 12/12/2023 changed everything.";
-      } else if (eventId === "birthday") {
-        description.innerText = "Your birthday on 18/10 lights up my world.";
-      } else if (eventId === "firstAloneMeeting") {
-        description.innerText = "Our first time meeting alone on 25/10/2024 filled my heart with hope.";
-      } else if (eventId === "b7bak") {
-        description.innerText = "On June 29, 2024, you first said 'b7bak'—a word that sealed our bond.";
-      } else if (eventId === "3egl") {
-        description.innerText = "On June 17, 2024, you shared your fear of calves ('3egl') and opened your heart.";
-      } else if (eventId === "phoneCall") {
-        description.innerText = "On August 3, 2024, our first phone call transported me to another world with the beauty of your voice.";
-      }
-    }
-    
-    /* ------------------------------
-         Love Quotes Logic
-    ------------------------------ */
-    const quotes = [
-      "You are my today and all of my tomorrows. ❤️",
-      "I love you more than words can express, more than the stars in the sky. ✨",
-      "In your eyes, I see my forever. 💕",
-      "You are the melody my heart has always wanted to sing. 🎶",
-      "Loving you is my favorite adventure. 🌍",
-      "You and me—always and forever. 🔗",
-      "Every moment with you is a beautiful memory in the making. 📖",
-      "You are my greatest love story. 💌",
-      "If love were a journey, I’d walk it forever with you. 🚶‍♂️❤️",
-      "You are the missing piece I never knew I needed. 🧩",
-      "Your love is the most beautiful thing I have ever known. 🌹",
-      "Forever isn’t long enough to love you. ⏳",
-      "I found my home in your heart. 🏡❤️",
-      "Every heartbeat echoes our shared dreams. – Unknown",
-      "Together, our souls write an endless poem. – Unknown",
-      "In your smile, I see my destiny. – Unknown",
-      "Our love is a timeless dance of passion. – Unknown",
-      "With you, every day is a celebration of life. – Unknown",
-      "Our hearts beat as one, forever entwined. – Unknown",
-      "Love begins and ends with you. – Unknown",
-      "You are my dream come true. 🌟"
-    ];
-    let currentQuoteIndex = 0;
-    document.getElementById("quoteDisplay").innerText = quotes[currentQuoteIndex];
-    function nextQuote() {
-      currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-      document.getElementById("quoteDisplay").innerText = quotes[currentQuoteIndex];
-    }
-    function prevQuote() {
-      currentQuoteIndex = (currentQuoteIndex - 1 + quotes.length) % quotes.length;
-      document.getElementById("quoteDisplay").innerText = quotes[currentQuoteIndex];
-    }
-    setInterval(nextQuote, 8000);
-    
-    /* ------------------------------
-         Maze Game: Recursive Backtracking
-    ------------------------------ */
-    const gridSize = 8;
-    const mazeEl = document.getElementById("maze");
-    let mazeGrid = [];
-    let playerPos = { i: 0, j: 0 };
-    const goalPos = { i: gridSize - 1, j: gridSize - 1 };
-    
-    function initMaze() {
-      mazeGrid = [];
-      for (let i = 0; i < gridSize; i++) {
-        mazeGrid[i] = [];
-        for (let j = 0; j < gridSize; j++) {
-          mazeGrid[i][j] = { walls: { top: true, right: true, bottom: true, left: true }, visited: false };
+
+    <script>
+        let noButtonTexts = [
+            "Wrong Button?", 
+            "What are you doing?", 
+            "Please???", 
+            "I will give you chocolate if you say yes 🙏🙏🙏", // <- After this, growth slows down
+            "B2olek eh ya bt enty dosy 3la om el zorar el tani"
+        ];
+        let clickCount = 0;
+        let yesButton = document.getElementById("yesButton");
+        let noButton = document.getElementById("noButton");
+
+        function makeYesBigger() {
+            let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+
+            if (clickCount < noButtonTexts.length) {
+                noButton.innerText = noButtonTexts[clickCount];
+
+                if (clickCount < 3) {
+                    yesButton.style.fontSize = (currentSize * 2) + "px"; // Exponential growth
+                } else {
+                    yesButton.style.fontSize = (currentSize * 1.2) + "px"; // Slower growth after "chocolate"
+                }
+            } 
+            
+            if (clickCount === noButtonTexts.length) {
+                yesButton.style.width = "100vw";
+                yesButton.style.height = "100vh";
+                yesButton.style.fontSize = "50px";
+                yesButton.innerText = "YESSSSS ❤️";
+            }
+
+            clickCount++;
         }
-      }
-      let stack = [];
-      let current = { i: 0, j: 0 };
-      mazeGrid[0][0].visited = true;
-      while (true) {
-        let neighbors = [];
-        if (current.i > 0 && !mazeGrid[current.i - 1][current.j].visited)
-          neighbors.push({ i: current.i - 1, j: current.j, direction: 'top' });
-        if (current.j < gridSize - 1 && !mazeGrid[current.i][current.j + 1].visited)
-          neighbors.push({ i: current.i, j: current.j + 1, direction: 'right' });
-        if (current.i < gridSize - 1 && !mazeGrid[current.i + 1][current.j].visited)
-          neighbors.push({ i: current.i + 1, j: current.j, direction: 'bottom' });
-        if (current.j > 0 && !mazeGrid[current.i][current.j - 1].visited)
-          neighbors.push({ i: current.i, j: current.j - 1, direction: 'left' });
-        
-        if (neighbors.length > 0) {
-          const next = neighbors[Math.floor(Math.random() * neighbors.length)];
-          if (next.direction === 'top') {
-            mazeGrid[current.i][current.j].walls.top = false;
-            mazeGrid[next.i][next.j].walls.bottom = false;
-          } else if (next.direction === 'right') {
-            mazeGrid[current.i][current.j].walls.right = false;
-            mazeGrid[next.i][next.j].walls.left = false;
-          } else if (next.direction === 'bottom') {
-            mazeGrid[current.i][current.j].walls.bottom = false;
-            mazeGrid[next.i][next.j].walls.top = false;
-          } else if (next.direction === 'left') {
-            mazeGrid[current.i][current.j].walls.left = false;
-            mazeGrid[next.i][next.j].walls.right = false;
-          }
-          stack.push(current);
-          current = { i: next.i, j: next.j };
-          mazeGrid[current.i][current.j].visited = true;
-        } else if (stack.length > 0) {
-          current = stack.pop();
-        } else {
-          break;
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = window.innerHeight + "px";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+
+            heart.style.position = "absolute";
+            heart.style.animation = "float 5s linear infinite";
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
         }
-      }
-    }
-    
-    /* Maze Rendering */
-    function renderMaze() {
-      mazeEl.innerHTML = "";
-      for (let i = 0; i < gridSize; i++) {
-        for (let j = 0; j < gridSize; j++) {
-          const cell = document.createElement("div");
-          cell.classList.add("maze-cell");
-          const walls = mazeGrid[i][j].walls;
-          if (!walls.top) cell.classList.add("open-top");
-          if (!walls.right) cell.classList.add("open-right");
-          if (!walls.bottom) cell.classList.add("open-bottom");
-          if (!walls.left) cell.classList.add("open-left");
-          if (i === playerPos.i && j === playerPos.j) cell.classList.add("player");
-          if (i === goalPos.i && j === goalPos.j) cell.classList.add("goal");
-          mazeEl.appendChild(cell);
-        }
-      }
-    }
-    
-    /* Maze Movement & Win Check */
-    function canMove(direction) {
-      const cell = mazeGrid[playerPos.i][playerPos.j];
-      if (direction === "up" && !cell.walls.top) return true;
-      if (direction === "right" && !cell.walls.right) return true;
-      if (direction === "down" && !cell.walls.bottom) return true;
-      if (direction === "left" && !cell.walls.left) return true;
-      return false;
-    }
-    function move(direction) {
-      if (!canMove(direction)) return;
-      if (direction === "up") playerPos.i--;
-      else if (direction === "right") playerPos.j++;
-      else if (direction === "down") playerPos.i++;
-      else if (direction === "left") playerPos.j--;
-      renderMaze();
-      checkWin();
-    }
-    function checkWin() {
-      if (playerPos.i === goalPos.i && playerPos.j === goalPos.j) {
-        setTimeout(() => {
-          openModal();
-          playerPos = { i: 0, j: 0 };
-          initGame();
-        }, 100);
-      }
-    }
-    function initGame() {
-      playerPos = { i: 0, j: 0 };
-      initMaze();
-      renderMaze();
-    }
-    initGame();
-    
-    /* Secret Reveal Modal */
-    const modal = document.getElementById("secretModal");
-    function openModal() {
-      modal.classList.add("visible");
-    }
-    function closeModal() {
-      modal.classList.remove("visible");
-    }
-  </script>
-  
-  <!-- Secret Reveal Modal -->
-  <div class="modal" id="secretModal">
-    <div class="modal-content">
-      <h2>My Heart, Your Future</h2>
-      <p>I dream of a day when I can call you my wife. Until then, know that you are my one and only.</p>
-      <button onclick="closeModal()">Close</button>
-    </div>
-  </div>
+
+        setInterval(createHeart, 200);
+    </script>
 </body>
 </html>
