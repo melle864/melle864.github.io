@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>Love Quotes, Poems & Labyrinth ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     /* Global Reset & Base Styles */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       background: linear-gradient(to bottom right, red, pink);
       color: white;
@@ -15,12 +17,7 @@
       padding: 20px;
       overflow-x: hidden;
     }
-    h1 {
-      font-size: 28px;
-      text-shadow: 2px 2px 4px black;
-      margin-bottom: 10px;
-    }
-    /* Navigation Bar */
+    /* Navigation Bar - Centered Using Flex */
     nav {
       position: fixed;
       top: 0;
@@ -28,11 +25,14 @@
       background: rgba(0, 0, 0, 0.7);
       padding: 10px 0;
       z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     nav a {
       color: gold;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 20px;
       font-size: 1.1rem;
       font-weight: bold;
     }
@@ -48,7 +48,7 @@
       50% { opacity: 0.8; }
       100% { transform: translateY(-10vh); opacity: 0; }
     }
-    /* Background Floating Quotes (for extra life) */
+    /* Background Floating Quotes */
     .bg-quotes {
       position: fixed;
       top: 0; left: 0;
@@ -56,7 +56,7 @@
       pointer-events: none;
       z-index: -1;
       font-family: 'Arial', sans-serif;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.4);
       overflow: hidden;
     }
     .bg-quotes span {
@@ -66,9 +66,9 @@
       animation: float 25s linear infinite;
     }
     @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.3; }
-      50% { opacity: 0.5; }
-      100% { transform: translateY(-150vh) rotate(360deg); opacity: 0.3; }
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.4; }
+      50% { opacity: 0.6; }
+      100% { transform: translateY(-150vh) rotate(360deg); opacity: 0.4; }
     }
     /* Quote & Poems Section */
     .quote-container {
@@ -97,9 +97,7 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    .btn:hover {
-      background: white;
-    }
+    .btn:hover { background: white; }
     /* Labyrinth (Maze) Section */
     .maze-section {
       background: rgba(255,255,255,0.98);
@@ -246,9 +244,7 @@
       document.getElementById("quoteDisplay").innerText = quotes[currentQuoteIndex];
     }
     
-    /* ------------------------------
-         Maze Game: Recursive Backtracking
-    ------------------------------ */
+    /* Maze Game: Recursive Backtracking */
     const gridSize = 8; // 8x8 maze grid
     const mazeEl = document.getElementById("maze");
     let mazeGrid = [];
@@ -358,4 +354,3 @@
   </script>
 </body>
 </html>
-
